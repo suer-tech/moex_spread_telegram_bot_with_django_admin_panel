@@ -1,3 +1,9 @@
+from mx.spread.api.calculate_result import calculate_spread
+from mx.spread.api.tickers import *
+from mx.spread.api.tinkoff_api import subscribe_price
+from mx.spread.models import Quote
+
+
 def save_quotes(active, active_prices):
     for asset in active:
         if asset['code'] not in active:
@@ -23,9 +29,11 @@ def save_spread(active, active_prices):
         quote_to_modify.spread = diff
         quote_to_modify.save()
 
+
 def save_quote_and_spread(active, active_prices):
     save_quotes(active, active_prices)
     save_spread(active, active_prices)
+
 
 def update_quote():
     try:
@@ -37,7 +45,6 @@ def update_quote():
     usd_prices = {}
     eur_prices = {}
     cny_prices = {}
-    mgnt_prices = {}
 
     save_quote_and_spread(usd, usd_prices)
     save_quote_and_spread(eur, eur_prices)

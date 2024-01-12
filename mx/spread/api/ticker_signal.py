@@ -1,3 +1,8 @@
+import json
+import time
+import emoji
+
+
 def write_signal_to_file(signal, signal_txt):
     with open('sig_proc.txt', 'a', encoding='utf-8') as file:
         file.write(signal + '\n')

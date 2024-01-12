@@ -1,3 +1,6 @@
+from mx.spread.api.tickers import *
+
+
 def write_spread(currience, diff):
     txt = 'usd.txt'
     if currience == eur:

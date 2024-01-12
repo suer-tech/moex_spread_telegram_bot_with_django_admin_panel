@@ -1,9 +1,11 @@
 from django.core.management.base import BaseCommand
-from ... bot import start_telegram_bot
+
+from mx.spread.api.update_quotes import update_quote
+
 
 class Command(BaseCommand):
-    help = 'Starts the Telegram bot using webhooks'
+    help = 'Starts the Telegram bot'
 
     def handle(self, *args, **options):
         update_quote()
-        start_telegram_bot()
+        # start_telegram_bot()

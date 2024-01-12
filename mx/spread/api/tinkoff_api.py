@@ -6,13 +6,11 @@ from tinkoff.invest import (
     InfoInstrument,
     SubscriptionInterval,
 )
-from config import tinkoff
-import json
-import time
-import emoji
+from api_config import tinkoff_token
 
 
-TOKEN = tinkoff
+
+TOKEN = tinkoff_token
 
 def subscribe_price(asset, result_prices_arr):
     print(asset)
