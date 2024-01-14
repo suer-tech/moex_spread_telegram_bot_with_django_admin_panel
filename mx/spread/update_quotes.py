@@ -1,4 +1,4 @@
-from mx.spread.api.calculate_result import calculate_spread
+from mx.spread.calculates.calculate_spread import calculate_spread
 from mx.spread.api.tickers import *
 from mx.spread.api.tinkoff_api import subscribe_price
 from mx.spread.models import Quote
@@ -8,7 +8,7 @@ def save_quotes(active, active_prices):
     for asset in active:
         if asset['code'] not in active:
             price = subscribe_price(asset, active_prices)
-            if price != None:
+            if price is not None:
                 active_prices[asset['code']] = price
 
     if active == usd or active == cny:
@@ -36,11 +36,6 @@ def save_quote_and_spread(active, active_prices):
 
 
 def update_quote():
-    try:
-        f = open('sig_proc.txt', 'r')
-    except FileNotFoundError as err:
-        with open('sig_proc.txt', 'w') as fw:
-            pass
 
     usd_prices = {}
     eur_prices = {}

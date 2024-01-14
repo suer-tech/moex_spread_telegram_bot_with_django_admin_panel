@@ -17,6 +17,12 @@ createTxtFile('cny_firstspread_and_signal.txt')
 
 createTxtFile('mgnt_firstspread_and_signal.txt')
 
+try:
+    f = open('sig_proc.txt', 'r')
+except FileNotFoundError as err:
+    with open('sig_proc.txt', 'w') as fw:
+        pass
+
 
 def create_text_message_of_price_acrive_and_spread(active):
     quote = Quote.objects.get(ticker=active)

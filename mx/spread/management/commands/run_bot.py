@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from mx.spread.api.update_quotes import update_quote
+from mx.spread.update_quotes import update_quote
 
 
 class Command(BaseCommand):
