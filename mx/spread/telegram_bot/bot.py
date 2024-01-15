@@ -12,7 +12,6 @@ from mx.spread.telegram_bot.keyboards.main_keyboard import *
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
 
-
 class YourState(StatesGroup):
 
     new_usd = State()
