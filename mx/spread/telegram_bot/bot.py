@@ -12,31 +12,12 @@ from mx.spread.telegram_bot.keyboards.main_keyboard import *
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
 
-class YourState(StatesGroup):
 
-    new_usd = State()
-    new_usd_only = State()
-    new_usd_tvh = State()
-    new_usd_spread_first = State()
-
-    new_eur = State()
-    new_eur_only = State()
-    new_eur_tvh = State()
-    new_eur_spread_first = State()
-
-    new_cny = State()
-    new_cny_only = State()
-    new_cny_tvh = State()
-    new_cny_spread_first = State()
-
-    new_mgnt = State()
-    new_mgnt_only = State()
-    new_mgnt_tvh = State()
-    new_mgnt_spread_first = State()
-
+currencies = ["USD", "EUR", "СNY"]
 
 checkmark = "✅"
 token = '5814873337:AAFmEDxaPRXmg8w1HQ4FTiNB1U5l8pgtFgE'
+users_id = [5677980129]
 
 bot = Bot(token)
 dp = Dispatcher(bot, storage=MemoryStorage())
@@ -102,7 +83,8 @@ async def fix_usd_tvh(message: types.Message):
 
 
 if __name__ == '__main__':
-    generate_currencies_handlers(dp)
+    generate_states_for_currencies(currencies)
+    generate_currencies_handlers(dp, currencies)
     executor.start_polling(dp)
 
 
@@ -113,7 +95,7 @@ import chardet
 
 token = '6697554084:AAESe8F1SpsMwRgZa_Y5GwAX7Hf9ac6uQZ8'
 bot = telebot.TeleBot(token, parse_mode=None)
-users_id = [5677980129]  # Замените на свой список ID пользователей
+  # Замените на свой список ID пользователей
 
 def send_message(txt_file):
     if os.path.exists(txt_file) and os.stat(txt_file).st_size > 0:
@@ -138,7 +120,5 @@ while True:
     send_message('sig_proc.txt')
 
 bot.polling(none_stop=True)
-
-
 
 
