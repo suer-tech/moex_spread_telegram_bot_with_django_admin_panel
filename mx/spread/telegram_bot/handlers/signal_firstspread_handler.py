@@ -1,3 +1,10 @@
+import os
+from aiogram import Bot, types
+from aiogram.dispatcher import Dispatcher, FSMContext
+from aiogram.dispatcher.filters import Text
+from mx.spread.telegram_bot.bot import checkmark
+
+
 async def generate_signal_firstspread_handlers(dp, currency):
     curr_low = currency.lower()
 
@@ -15,7 +22,7 @@ async def generate_signal_firstspread_handlers(dp, currency):
         try:
             tvh_file = f'{curr_low}_firstspread_and_signal.txt'
 
-            if os.path.exists(usd_tvh_file):
+            if os.path.exists(tvh_file):
                 with open(tvh_file, "r") as file:
                     data = file.read().strip()  # Убираем лишние пробелы и переводы строк
 
@@ -87,7 +94,7 @@ async def generate_signal_firstspread_handlers(dp, currency):
     async def reset_usd_tvh(message: types.Message):
         tvh_file = f'{curr_low}_firstspread_and_signal.txt'
 
-        if os.path.exists(usd_tvh_file):
+        if os.path.exists(tvh_file):
             with open(tvh_file, 'w', encoding='utf-8') as fw:
                 pass  # Это создаст пустой файл, стирая всё содержимое
             await message.answer(f"Сигнал для {currency} сброшен.", reply_markup=signal_firstspread_keyboard)

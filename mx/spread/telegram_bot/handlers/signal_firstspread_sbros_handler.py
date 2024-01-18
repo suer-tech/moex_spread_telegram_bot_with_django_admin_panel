@@ -1,3 +1,8 @@
+from aiogram import Bot, types
+from aiogram.dispatcher.filters import Text
+from mx.spread.telegram_bot.bot import bot
+
+
 async def generate_signal_firstspread_sbros_handlers(dp, currency):
     curr_low = currency.lower()
 

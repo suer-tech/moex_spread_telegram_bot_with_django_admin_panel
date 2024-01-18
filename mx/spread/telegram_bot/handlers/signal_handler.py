@@ -1,3 +1,11 @@
+from aiogram import Bot, types
+from aiogram.dispatcher import Dispatcher, FSMContext
+from aiogram.dispatcher.filters import Text
+
+from mx.spread.telegram_bot.bot import checkmark
+
+
+
 async def generate_signal_handlers(dp, currency):
     curr_low = currency.lower()
     signal_keyboard_name = f'{curr_low}_signal_keyboard'
@@ -27,7 +35,6 @@ async def generate_signal_handlers(dp, currency):
         # Запрашиваем новое значение сигнала и записываем его в файл
         await message.answer(f"Введите новое значение сигнала в % от точки входа по {currency}:")
         # Устанавливаем состояние для ожидания нового значения сигнала
-        await YourState.new_usd.set()
         yourstate = f'YourState.new_{curr_low}.set()'
         await locals()[yourstate]
 

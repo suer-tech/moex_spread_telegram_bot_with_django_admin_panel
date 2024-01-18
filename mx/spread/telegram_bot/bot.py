@@ -7,17 +7,19 @@ from aiogram.dispatcher import Dispatcher
 from aiogram.dispatcher.filters import Text
 from aiogram.utils import executor
 
+from mx.spread.telegram_bot.currencies_handlers import generate_states_for_currencies, generate_currencies_handlers
 from mx.spread.telegram_bot.keyboards.main_keyboard import *
 
-from aiogram.dispatcher.filters.state import State, StatesGroup
-from aiogram.dispatcher import FSMContext
 
+from mx.spread.telegram_bot.keyboards.signal_firstspread_keyboard import signal_firstspread_keyboard
+from mx.spread.telegram_bot.keyboards.signal_keyboard import signal_keyboard
+from mx.spread.telegram_bot.keyboards.signal_only_keyboard import signal_only_keyboard
 
 currencies = ["USD", "EUR", "СNY"]
 
 checkmark = "✅"
 token = '5814873337:AAFmEDxaPRXmg8w1HQ4FTiNB1U5l8pgtFgE'
-users_id = [5677980129]
+users_id = [412850740]
 
 bot = Bot(token)
 dp = Dispatcher(bot, storage=MemoryStorage())
@@ -81,44 +83,43 @@ async def fix_usd_tvh(message: types.Message):
     await bot.send_message(message.chat.id, mess, reply_markup=signal_only_keyboard)
 
 
-
-if __name__ == '__main__':
+def start_telegram_bot():
     generate_states_for_currencies(currencies)
     generate_currencies_handlers(dp, currencies)
     executor.start_polling(dp)
 
 
-import telebot
-import os
-import time
-import chardet
-
-token = '6697554084:AAESe8F1SpsMwRgZa_Y5GwAX7Hf9ac6uQZ8'
-bot = telebot.TeleBot(token, parse_mode=None)
-  # Замените на свой список ID пользователей
-
-def send_message(txt_file):
-    if os.path.exists(txt_file) and os.stat(txt_file).st_size > 0:
-        encoding = detect_encoding(txt_file)
-        with open(txt_file, 'r', encoding='utf-8') as fr:
-            mess = fr.read()
-        for user in users_id:
-            try:
-                bot.send_message(user, mess)
-            except Exception as e:
-                print(f"Error sending message to user {user}: {e}")
-        with open(txt_file, 'w') as fw:
-            pass
-
-def detect_encoding(file_path):
-    with open(file_path, 'rb') as file:
-        result = chardet.detect(file.read())
-    return result['encoding']
-
-while True:
-    time.sleep(1)
-    send_message('sig_proc.txt')
-
-bot.polling(none_stop=True)
+# import telebot
+# import os
+# import time
+# import chardet
+#
+# token = '6697554084:AAESe8F1SpsMwRgZa_Y5GwAX7Hf9ac6uQZ8'
+# bot = telebot.TeleBot(token, parse_mode=None)
+#   # Замените на свой список ID пользователей
+#
+# def send_message(txt_file):
+#     if os.path.exists(txt_file) and os.stat(txt_file).st_size > 0:
+#         encoding = detect_encoding(txt_file)
+#         with open(txt_file, 'r', encoding='utf-8') as fr:
+#             mess = fr.read()
+#         for user in users_id:
+#             try:
+#                 bot.send_message(user, mess)
+#             except Exception as e:
+#                 print(f"Error sending message to user {user}: {e}")
+#         with open(txt_file, 'w') as fw:
+#             pass
+#
+# def detect_encoding(file_path):
+#     with open(file_path, 'rb') as file:
+#         result = chardet.detect(file.read())
+#     return result['encoding']
+#
+# while True:
+#     time.sleep(1)
+#     send_message('sig_proc.txt')
+#
+# bot.polling(none_stop=True)
 
 

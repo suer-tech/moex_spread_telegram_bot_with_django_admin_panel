@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 
+from mx.spread.telegram_bot.bot import start_telegram_bot
 from mx.spread.update_quotes import update_quote
 
 
@@ -8,4 +9,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         update_quote()
-        # start_telegram_bot()
+        start_telegram_bot()
