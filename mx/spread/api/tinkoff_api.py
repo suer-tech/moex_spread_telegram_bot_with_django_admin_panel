@@ -6,13 +6,13 @@ from tinkoff.invest import (
     InfoInstrument,
     SubscriptionInterval,
 )
-from api_config import tinkoff_token
 
-
+from . api_config import tinkoff_token
 
 TOKEN = tinkoff_token
 
-def subscribe_price(asset, result_prices_arr):
+
+async def subscribe_price(asset, result_prices_arr):
     print(asset)
     with Client(TOKEN) as client:
         market_data_stream: MarketDataStreamManager = client.create_market_data_stream()

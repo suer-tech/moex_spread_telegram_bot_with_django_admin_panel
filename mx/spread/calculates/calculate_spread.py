@@ -1,7 +1,8 @@
-from mx.spread.api.tickers import *
+from ..api.tickers import *
 
 
 def calculate_spread(currience, basket_price):
+    print(basket_price)
     if currience == usd or currience == eur:
         x = 1000
 
