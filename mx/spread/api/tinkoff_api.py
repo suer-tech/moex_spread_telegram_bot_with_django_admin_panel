@@ -7,7 +7,7 @@ from tinkoff.invest import (
     SubscriptionInterval,
 )
 
-from . api_config import tinkoff_token
+from .api_config import tinkoff_token
 
 TOKEN = tinkoff_token
 
