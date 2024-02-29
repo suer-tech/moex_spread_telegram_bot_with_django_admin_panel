@@ -21,7 +21,6 @@ checkmark = "✅"
 token = '5814873337:AAFmEDxaPRXmg8w1HQ4FTiNB1U5l8pgtFgE'
 users_id = [412850740]
 
-
 current_datetime = datetime.now()
 
 
